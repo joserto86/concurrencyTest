@@ -1,0 +1,25 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7.22
+    container_name: 'mysql'
+    restart: 'always'
+    ports:
+    - "3306:3306"
+    volumes:
+    - ./bbdd/data/mysql}:/var/lib/mysql
+    - ./bbdd/logs/mysql}:/var/log/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: farsa
+      MYSQL_DATABASE: concurrencyTest
+      MYSQL_USER: concurrencyUser
+      MYSQL_PASSWORD: farsa
+
+  redis:
+    container_name: redis
+    image: redis:5-alpine
+    ports: [6379]
+
+  rabbitmq:
+    image: rabbitmq:3.7-management
+    ports: [5672, 15672]
